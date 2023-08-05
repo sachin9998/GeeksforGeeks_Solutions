@@ -31,9 +31,9 @@ class Solution{
         }
         
         int digit = N % 10;
-        N = N / 10;
+        // N = N / 10;
         
-        return digit + sumOfDigits(N);
+        return digit + sumOfDigits(N / 10);
     }
 }
        
