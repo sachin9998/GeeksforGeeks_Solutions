@@ -84,66 +84,49 @@ class Solution
     static Node segregate(Node head)
     {
         // add your code here
+        int one = 0;
+        int zero = 0;
+        int two = 0;
+        
         Node curr = head;
-        Node zeroHead = new Node(-1);
-        Node zero = zeroHead;
-        Node oneHead = new Node(-1);
-        Node one = oneHead;
-        Node twoHead = new Node(-1);
-        Node two = twoHead;
         
         while(curr != null) {
-            
             if(curr.data == 0) {
-                zero.next = curr;
-                zero = zero.next;
-                curr = curr.next;
+                zero++;
             } else if(curr.data == 1) {
-                one.next = curr;
-                one = one.next;
-                curr = curr.next;
+                one++;
             } else {
-                two.next = curr;
-                two = two.next;
-                curr = curr.next;
+                two++;
+            }
+            curr = curr.next;
+        }
+        
+        Node temp = head;
+        while(temp != null) {
+            
+            while(zero > 0) {
+                temp.data = 0;
+                temp = temp.next;
+                zero--;
+            }
+            
+            while(one > 0) {
+                temp.data = 1;
+                temp = temp.next;
+                one--;
+            }
+            
+            while(two > 0) {
+                temp.data = 2;
+                temp = temp.next;
+                two--;
             }
             
             
         }
         
-        zeroHead = zeroHead.next;
-        oneHead = oneHead.next;
-        twoHead = twoHead.next;
+        return head;
         
-        
-        if(zeroHead == null && oneHead == null) {
-            two.next = null;
-            return twoHead;
-        }
-        
-        if(zeroHead == null) {
-            one.next = twoHead;
-            two.next = null;
-            return oneHead;
-        }
-        
-        if(oneHead == null) {
-            zero.next = twoHead;
-            two.next = null;
-            return zeroHead;
-        }
-        
-        if(twoHead == null) {
-            zero.next = oneHead;
-            one.next = null;
-            return zeroHead;
-        }
-        
-        zero.next = oneHead;
-        one.next = twoHead;
-        two.next = null;
-        
-        return zeroHead;
     }
 }
 
