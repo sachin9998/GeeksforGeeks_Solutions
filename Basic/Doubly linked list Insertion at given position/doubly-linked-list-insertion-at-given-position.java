@@ -115,28 +115,30 @@ class GfG
 		    head_ref = newNode;
 		}
 		
-		
 		Node temp = head_ref;
 		
-		for(int i = 0; i <= pos - 1; i++) {
+		for(int i = 0; i < pos; i++) {
 		    temp = temp.next;
 		}
 		
+		
 		if(temp.next == null) {
-		    newNode.prev = temp;
 		    temp.next = newNode;
+		    newNode.prev = temp;
+		    newNode.next = null;
+		   // temp.next = null;
 		} else {
-		    
-		   Node next = temp.next;
+		    newNode.next = temp.next;
 		   
 		    temp.next = newNode;
 		    newNode.prev = temp;
-	    	newNode.next = next;
-		    next.prev = newNode;
+		     newNode.next.prev = newNode;
+		    
+		    
+		    
 		}
 		
 		
-
 		
 	}
 }
