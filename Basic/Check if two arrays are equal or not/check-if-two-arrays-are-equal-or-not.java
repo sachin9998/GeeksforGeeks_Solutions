@@ -45,30 +45,25 @@ class Solution{
     public static boolean check(long A[],long B[],int N)
     {
         //Your code here
-        boolean ans = false;
-        HashMap<Long, Integer> map = new HashMap<>();
-        
-        for(int i = 0; i < A.length; i++) {
-            if(map.containsKey(A[i])) {
-                map.put(A[i], map.get(A[i]) + 1);
-            }
-            
-            else {
-                map.put(A[i], 1);
-            }
+                // Check if the sizes of the arrays are equal
+        if (A.length != B.length) {
+            return false;
         }
-        
-        for(int i = 0; i < B.length; i++) {
-            
-            if(map.containsKey(B[i]) && map.get(B[i]) > 0) {
-                map.put(B[i], map.get(B[i]) - 1);
-            }
-            else {
-                return ans;
-            }
-            
+
+        Map<Long, Integer> countA = new HashMap<>();
+        Map<Long, Integer> countB = new HashMap<>();
+
+        // Count the occurrences of each element in array A
+        for (long num : A) {
+            countA.put(num, countA.getOrDefault(num, 0) + 1);
         }
-        
-        return true;
+
+        // Count the occurrences of each element in array B
+        for (long num : B) {
+            countB.put(num, countB.getOrDefault(num, 0) + 1);
+        }
+
+        // Compare the counts of elements in both arrays
+        return countA.equals(countB);
     }
 }
