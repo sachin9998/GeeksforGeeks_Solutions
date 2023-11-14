@@ -29,26 +29,21 @@ class Solution
 {
     int maxDistance(int arr[], int n)
     {
-	    // Storing last index of element
-	    HashMap < Integer, Integer> hm = new HashMap<>();
-	    
-	    for(int i = 0; i < n; i++) {
-	        hm.put(arr[i], i);
-	    }
-	    
-	    int max = 0;
-	    
-	    for(int i = 0; i < n; i++) {
-	        int count = 0;
-	        
-	        if(hm.containsKey(arr[i])) {
-	            count = hm.get(arr[i]) - i;
-	        } 
-	        
-	        max = Math.max(count, max);
-	    }
+	// Your code here
 	
-	    return max;
+	    HashMap <Integer, Integer> hm = new HashMap<>();
+	    
+	    int ans = 0;
+	    
+	    for(int i = 0; i < n; i++) {
+	        if(hm.containsKey(arr[i])) {
+	            ans= Math.max(ans, i - hm.get(arr[i]) );
+	        } else {
+	            hm.put(arr[i], i);
+	        }
+	    }
+	    
+	    return ans;
 	
     }
 }
