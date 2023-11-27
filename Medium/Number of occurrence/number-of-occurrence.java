@@ -52,6 +52,5 @@ class Solution {
         }
         
         return hm.containsKey(x) ? hm.get(x) : 0;
-        // hm.get(x);
     }
 }
