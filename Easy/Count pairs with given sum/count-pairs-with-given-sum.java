@@ -33,22 +33,20 @@ public class GFG {
 class Solution {
     int getPairsCount(int[] arr, int n, int k) {
         // code here
-        
-        Map<Integer, Integer> freqMap = new HashMap<>();
         int count = 0;
-
-        for (int i = 0; i < n; i++) {
-            int complement = k - arr[i];
-
-            // Check if the complement exists in the map
-            if (freqMap.containsKey(complement)) {
-                count += freqMap.get(complement);
+        
+        HashMap <Integer, Integer> hm = new HashMap<>();
+        
+        for(int i = 0; i < n; i++) {
+            int diff = k - arr[i];
+            
+            if(hm.containsKey(diff)) {
+                count += hm.get(diff);
             }
-
-            // Increment the frequency of the current element in the map
-            freqMap.put(arr[i], freqMap.getOrDefault(arr[i], 0) + 1);
+            
+            hm.put(arr[i], hm.getOrDefault(arr[i], 0) + 1);
         }
-
+        
         return count;
     }
 }
