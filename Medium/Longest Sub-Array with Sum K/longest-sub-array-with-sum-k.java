@@ -46,29 +46,37 @@ class Array {
 
 //User function Template for Java
 
-class Solution {
+class Solution{
     // Function for finding maximum and value pair
-    public static int lenOfLongSubarr(int A[], int N, int K) {
-        int count = 0;
-        HashMap<Integer, Integer> hm = new HashMap<>();
-        hm.put(0, 0);
+    public static int lenOfLongSubarr (int a[], int N, int k) {
+        HashMap<Integer, Integer> prefixSum = new HashMap<>();
 
-        int sum = 0;
-        for (int i = 0; i < A.length; i++) {
-            sum += A[i];
-            int diff = sum - K;
+        int currentSum = 0;
+        int maxLength = 0; // For storing longest subarray length
 
-            if (hm.containsKey(diff)) {
-                int current = i - hm.get(diff) + 1;
-                count = Math.max(count, current);
+        prefixSum.put(0, -1);
+
+        for(int i = 0; i < a.length; i++) {
+            currentSum += a[i];
+            int diff = (int) currentSum - (int) k;
+            
+            if(prefixSum.containsKey(diff)) {
+                int length = i - prefixSum.get(diff);
+
+                if(length > maxLength) {
+                    maxLength = length;
+                }
             }
 
-            if (!hm.containsKey(sum)) {
-                hm.put(sum, i + 1);
+            // If map contains currentSum already then dont add to map.
+            if (!prefixSum.containsKey(currentSum)) {
+                prefixSum.put(currentSum, i);
             }
+            
+
         }
 
-        return count;
+        return maxLength;
     }
 }
 
