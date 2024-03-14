@@ -47,37 +47,36 @@ class Array {
 //User function Template for Java
 
 class Solution{
+    
+   
     // Function for finding maximum and value pair
-    public static int lenOfLongSubarr (int a[], int N, int k) {
-        HashMap<Integer, Integer> prefixSum = new HashMap<>();
+    public static int lenOfLongSubarr (int A[], int N, int K) {
+         HashMap<Integer, Integer> prefixSumMap = new HashMap<>();
+        int maxLength = 0;
+        int prefixSum = 0;
 
-        int currentSum = 0;
-        int maxLength = 0; // For storing longest subarray length
+        for (int i = 0; i < N; i++) {
+            // Add the current element to the prefix sum
+            prefixSum += A[i];
 
-        prefixSum.put(0, -1);
+            // If prefix sum is equal to K, update maxLength
+            if (prefixSum == K)
+                maxLength = i + 1;
 
-        for(int i = 0; i < a.length; i++) {
-            currentSum += a[i];
-            int diff = (int) currentSum - (int) k;
-            
-            if(prefixSum.containsKey(diff)) {
-                int length = i - prefixSum.get(diff);
+            // If prefix sum - K is present in the map, update maxLength
+            if (prefixSumMap.containsKey(prefixSum - K))
+                maxLength = Math.max(maxLength, i - prefixSumMap.get(prefixSum - K));
 
-                if(length > maxLength) {
-                    maxLength = length;
-                }
-            }
-
-            // If map contains currentSum already then dont add to map.
-            if (!prefixSum.containsKey(currentSum)) {
-                prefixSum.put(currentSum, i);
-            }
-            
-
+            // If prefix sum is not present in the map, add it with its index
+            if (!prefixSumMap.containsKey(prefixSum))
+                prefixSumMap.put(prefixSum, i);
         }
 
         return maxLength;
+        
     }
+    
+    
 }
 
 
