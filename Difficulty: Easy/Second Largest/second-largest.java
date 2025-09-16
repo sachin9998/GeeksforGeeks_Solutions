@@ -1,17 +1,14 @@
 class Solution {
     public int getSecondLargest(int[] arr) {
         // code here
-        int first = -1;
+        int largest = -1;
         int second = -1;
-        int n = arr.length;
         
-        for(int i = 0; i < n; i++) {
-            if(arr[i] > first) {
-                second = first;
-                first = arr[i];
-            }
-            
-            if(arr[i] < first && arr[i] > second) {
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i] > largest) {
+                second = largest;
+                largest = arr[i];
+            } else if(arr[i] > second && arr[i] < largest) {
                 second = arr[i];
             }
         }
