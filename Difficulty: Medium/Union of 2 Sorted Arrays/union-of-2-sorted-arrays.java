@@ -1,7 +1,7 @@
 class Solution {
     public static ArrayList<Integer> findUnion(int a[], int b[]) {
         // code here
-int n = a.length, m = b.length;
+        int n = a.length, m = b.length;
         int i = 0, j = 0;
         ArrayList<Integer> union = new ArrayList<>();
 
