@@ -1,4 +1,10 @@
 class Solution:
     def getAlternates(self, arr):
         # Code Here
-        return arr[::2]
+        ans = []
+        
+        for i in range(len(arr)):
+            if i % 2 == 0:
+                ans.append(arr[i])
+                
+        return ans
