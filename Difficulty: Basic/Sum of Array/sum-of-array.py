@@ -1,9 +1,9 @@
-#User function Template for python3
 class Solution:
 	def arraySum(self, arr):
-	    total = 0
-   
-        for num in arr:
-            total += num
+   		# code here
+        sum = 0
         
-        return total
+        for i in arr:
+            sum += i
+            
+        return sum;
